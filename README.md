@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # fluttertube
 
 A new Flutter project.
