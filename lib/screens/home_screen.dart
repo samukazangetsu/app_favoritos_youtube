@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertube/delegades/data_search.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -25,7 +26,10 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(
                 Icons.search,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                // Cria uma tela de pesquisa com um input a para inserir texto
+                showSearch(context: context, delegate: DataSearch());
+              }),
         ],
       ),
       body: Container(),
