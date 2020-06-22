@@ -26,9 +26,11 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(
                 Icons.search,
               ),
-              onPressed: () {
+              onPressed: () async {
                 // Cria uma tela de pesquisa com um input a para inserir texto
-                showSearch(context: context, delegate: DataSearch());
+                String result =
+                    await showSearch(context: context, delegate: DataSearch());
+                print(result);
               }),
         ],
       ),
