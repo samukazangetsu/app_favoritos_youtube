@@ -12,6 +12,7 @@ class DataSearch extends SearchDelegate<String> {
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
+          // Limpa o campo de pesquisa
           query = "";
         },
       )
@@ -31,12 +32,15 @@ class DataSearch extends SearchDelegate<String> {
         });
   }
 
+  // Retorna para tela inicial com a informação de pesquisa
+  // caso clicado no botão pesquisar do teclado
   @override
   Widget buildResults(BuildContext context) {
     Future.delayed(Duration.zero).then((value) => close(context, query));
     return Container();
   }
 
+  // Constrói a tela de sugestões
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty)

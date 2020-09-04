@@ -1,4 +1,4 @@
-#Wed Jul 15 20:27:52 BRT 2020
+#Fri Sep 04 16:07:33 BRT 2020
 base.0=C\:\\Users\\samue\\Desktop\\Flutter Projects\\app_favoritos_youtube\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
