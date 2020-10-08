@@ -1,5 +1,7 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
+import 'package:fluttertube/api.dart';
 import 'package:fluttertube/blocs/favorite_bloc.dart';
 import 'package:fluttertube/models/video_model.dart';
 
@@ -21,7 +23,10 @@ class FavoritesScreen extends StatelessWidget {
           return ListView(
             children: snapshot.data.values.map((v) {
               return InkWell(
-                onTap: () {},
+                onTap: () {
+                  FlutterYoutube.playYoutubeVideoById(
+                      apiKey: API_KEY, videoId: v.id);
+                },
                 onLongPress: () {
                   blocFavorites.toggleFavorite(v);
                 },
