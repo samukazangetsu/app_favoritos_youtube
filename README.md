@@ -4,8 +4,6 @@ A new Flutter project.
 
 Um app para gerenciar favoritos do youtube feito para treinar Bloc Pattern
 
-b3c74e47eb322e8305af6db4305fe7124e6aebe0
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.

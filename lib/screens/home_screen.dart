@@ -4,12 +4,14 @@ import 'package:fluttertube/blocs/favorite_bloc.dart';
 import 'package:fluttertube/blocs/videos_bloc.dart';
 import 'package:fluttertube/delegades/data_search.dart';
 import 'package:fluttertube/models/video_model.dart';
+import 'package:fluttertube/screens/favorites_screen.dart';
 import 'package:fluttertube/widgets/video_tile.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.getBloc<VideosBloc>();
+    final blocVideos = BlocProvider.getBloc<VideosBloc>();
+    final blocFavorites = BlocProvider.getBloc<FavoriteBloc>();
 
     return Scaffold(
       appBar: AppBar(
@@ -23,8 +25,7 @@ class HomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: StreamBuilder<Map<String, Video>>(
-                initialData: {},
-                stream: BlocProvider.getBloc<FavoriteBloc>().outFav,
+                stream: blocFavorites.outFav,
                 builder: (context, snapshot) {
                   if (snapshot.hasData)
                     return Text("${snapshot.data.length}");
@@ -36,7 +37,10 @@ class HomeScreen extends StatelessWidget {
               icon: Icon(
                 Icons.star,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => FavoritesScreen()));
+              }),
           IconButton(
               icon: Icon(
                 Icons.search,
@@ -45,13 +49,13 @@ class HomeScreen extends StatelessWidget {
                 // Cria uma tela de pesquisa com um input a para inserir texto
                 String result =
                     await showSearch(context: context, delegate: DataSearch());
-                if (result != null) bloc.inSearch.add(result);
+                if (result != null) blocVideos.inSearch.add(result);
               }),
         ],
       ),
       backgroundColor: Colors.black87,
       body: StreamBuilder(
-          stream: bloc.outVideos,
+          stream: blocVideos.outVideos,
           initialData: [],
           builder: (context, snapshot) {
             if (snapshot.hasData)
@@ -61,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   if (index < snapshot.data.length) {
                     return VideoTile(snapshot.data[index]);
                   } else if (index > 1) {
-                    bloc.inSearch.add(null);
+                    blocVideos.inSearch.add(null);
                     return Container(
                       height: 40,
                       width: 40,
